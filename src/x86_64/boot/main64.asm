@@ -1,4 +1,5 @@
 global long_mode_start
+extern kernel_main
 
 section .text
 bits 64
@@ -13,6 +14,8 @@ long_mode_start:
   
   ; print 'OK' (ok = 0x2f4b2f4f)
   ; write to "video memory"
-  mov dword [0xb8000], 0x2f4b2f4f
+  ; mov dword [0xb8000], 0x2f4b2f4f
+  ; ^ can now be called with kernel main
+  call kernel_main
 
   hlt
